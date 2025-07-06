@@ -1,7 +1,6 @@
 import { type App, type Plugin, type Component } from "vue";
 import { default as VTutorial } from "./component";
 import { VUE_TUTORIALS_INJECTION_KEY } from "./constants";
-import "./style.css";
 
 export interface PluginOptions {
 	viewCount: number;

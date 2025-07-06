@@ -18,6 +18,104 @@
 
 Teach users about how your app works, with this easy-to-use tutorials plugins for Vue (v3.5+).
 
+## Peer Dependencies
+
+- Vue v3.5.0+
+- @vueuse/core version 10 - 13
+
+## Installation
+
+First, install the plugin using your package manager of choice (we're using PNPM). You'll also need to add the peer dependencies if they're not already in your project.
+
+```sh
+pnpm add vue-tutorials vue @vueuse/core
+```
+
+## Usage
+
+Vue Tutorials _must_ be installed as a plugin for your app:
+
+```js
+import { createApp } from "vue";
+import { VueTutorials } from "vue-tutorials";
+
+const app = createApp(App);
+app.use(VueTutorials);
+app.mount("#app");
+```
+
+### Global Options
+
+You can also pass global options to the plugin as the 2nd argument to `app.use`.
+
+Vue Tutorials will register the `v-tutorial` component globally by default.
+
+```js
+app.use(VueTutorials, {
+	viewCount: 2,
+	overlayColour: "rgb(0 0 0 / 0.8)",
+	contentClass: "bg-white p-4 rounded",
+	tutorials: {
+		feature: ["This is a new feature!"],
+	},
+	target: "#app",
+});
+```
+
+You can pass any of the following to the global options object
+
+| name                | type                               | description                                                   | default          |
+| ------------------- | ---------------------------------- | ------------------------------------------------------------- | ---------------- |
+| viewCount           | number                             | Number of times to show tutorial to user                      | 1                |
+| componentName       | string                             | Name of the globally registered component                     | "VTutorial"      |
+| tutorials           | Record<string, string \| string[]> | Dictionary of tutorial content                                | {}               |
+| overlayColour       | string                             | CSS colour for the non-highlighted elements                   | rgb(0 0 0 / 0.6) |
+| target              | string                             | Where highlighted content should be teleported to             | "body"           |
+| global              | boolean                            | Register the component globally                               | true             |
+| as                  | string \| Component                | Element to use for wrapping                                   | "span"           |
+| closeOnOutsideClick | boolean                            | Close tutorial when a user clicks outside the content         | true             |
+| contentClass        | string                             | Class(es) to apply to the content                             | <empty string>   |
+| highlightedClass    | string                             | Class(es) to apply to the highlighted element                 | <empty string>   |
+| position            | string                             | Position of the content relative to the highlighted element   | "bottom"         |
+| offset              | number                             | Number of pixels gap between content and highlighted elements | 10               |
+
+## Adding a Tutorial
+
+Inside your app, you can then wrap relevant areas:
+
+```html
+<VTutorial id="feature">
+	<div>New feature goes here</div>
+</VTutorial>
+```
+
+### Local Props
+
+You can pass any of the following to the local component. These will override your global config if set.
+
+- as
+- target
+- position
+- contentClass
+- overlayColour
+- closeOnOutsideClick
+
+### Slots
+
+> Content
+
+Pass content to be displayed directly
+
+```html
+<VTutorial id="feature">
+	<div>New feature goes here</div>
+	<template #content="{ closeTutorial }">
+		This is a new feature!
+		<button @click="closeTutorial">Done</button>
+	</template>
+</VTutorial>
+```
+
 ## Support Open-Source Software
 
 We're providing this package free-of-charge to the community. However, all development and maintenance costs time, energy and money. So please help fund this project if you can.

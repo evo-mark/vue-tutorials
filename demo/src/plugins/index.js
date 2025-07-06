@@ -1,6 +1,5 @@
 import vuetify from "./vuetify";
 import { VueTutorials } from "vue-tutorials";
-import "vue-tutorials/style.css";
 
 export function registerPlugins(app) {
 	app.use(vuetify);
