@@ -74,8 +74,8 @@ You can pass any of the following to the global options object
 | global              | boolean                            | Register the component globally                               | true             |
 | as                  | string \| Component                | Element to use for wrapping                                   | "span"           |
 | closeOnOutsideClick | boolean                            | Close tutorial when a user clicks outside the content         | true             |
-| contentClass        | string                             | Class(es) to apply to the content                             | <empty string>   |
-| highlightedClass    | string                             | Class(es) to apply to the highlighted element                 | <empty string>   |
+| contentClass        | string                             | Class(es) to apply to the content                             | \<empty string\> |
+| highlightedClass    | string                             | Class(es) to apply to the highlighted element                 | \<empty string\> |
 | position            | string                             | Position of the content relative to the highlighted element   | "bottom"         |
 | offset              | number                             | Number of pixels gap between content and highlighted elements | 10               |
 
@@ -99,6 +99,12 @@ You can pass any of the following to the local component. These will override yo
 - contentClass
 - overlayColour
 - closeOnOutsideClick
+
+Additionally, the following props are exclusive to the component:
+
+| name    | type             | description                      | default          |
+| ------- | ---------------- | -------------------------------- | ---------------- |
+| content | string\|string[] | Content to show for the tutorial | \<empty string\> |
 
 ### Slots
 
